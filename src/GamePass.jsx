@@ -14,6 +14,7 @@ import {
     Show,
     Presence,
     useDisclosure,
+    Flex,
 } from "@chakra-ui/react";
 import { motion, AnimatePresence } from "framer-motion";
 import { toaster } from "@/components/ui/toaster";
@@ -123,7 +124,6 @@ export default function GamePass() {
             p={6}
             maxW="3xl"
             mx="auto"
-            textAlign="center"
             bgGradient="linear(to-b, gray.800, gray.900, black)"
             color="white"
             borderRadius="xl"
@@ -131,26 +131,25 @@ export default function GamePass() {
             borderWidth="1px"
             borderColor="gray.700"
             fontFamily="sans-serif">
-            <Text fontSize="4xl" fontWeight="bold" color="indigo.300" mb={6}>
+            <Text
+                textAlign={"center"}
+                fontSize="4xl"
+                fontWeight="bold"
+                color="indigo.300"
+                mb={6}>
                 Навчальний Гейм-Пас
             </Text>
-            <HStack mb={4} justify="center" spacing={4}>
-                <Text>Обрати предмет:</Text>
-                {/* <Select.Root
-
-                    value={selectedSubject}
-                    onChange={(e) => setSelectedSubject(e.target.value)}
-                    size="md"></Select.Root> */}
-
+            <Flex flexWrap="wrap" spacing={4}>
                 <Select.Root
-                    bg="gray.700"
-                    borderColor="gray.600"
-                    color="white"
+                    flex="1 1 200px"
+                    mr={2}
+                    mb={4}
+                    colorScheme={"gray"}
                     collection={subjects}
                     value={[selectedSubject]}
                     onValueChange={(e) => setSelectedSubject(e.value[0])}>
                     <Select.HiddenSelect />
-                    {/* <Select.Label>Select framework</Select.Label> */}
+                    <Select.Label>Обрати предмет</Select.Label>
                     <Select.Control>
                         <Select.Trigger>
                             <Select.ValueText placeholder="Оберіть предмет" />
@@ -174,13 +173,12 @@ export default function GamePass() {
                         </Select.Positioner>
                     </Portal>
                 </Select.Root>
-
-                <Button onClick={onToggle}>
+                <Button mb={4} alignSelf="end" onClick={onToggle}>
                     {open
                         ? "Приховати прогрес"
                         : "Переглянути прогрес винагород"}
                 </Button>
-            </HStack>
+            </Flex>
             <Box
                 bg="gray.700"
                 borderColor="gray.600"
@@ -239,6 +237,8 @@ export default function GamePass() {
                             key={action.name}
                             onClick={() => handleXpGain(action)}
                             p={4}
+                            whiteSpace={"break-spaces"}
+                            height={"auto"}
                             borderRadius={8}
                             bg="blue.600"
                             color="white"
